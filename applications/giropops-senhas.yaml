@@ -9,7 +9,7 @@ spec:
     helm: {}
     repoURL: 'https://github.com/vinycloud/descomplicando-gitops-argocd.git'
     targetRevision: feat/argocd
-    path: giropops-senhas
+    path: giropops-senhas/helm
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: giropops-senhas
