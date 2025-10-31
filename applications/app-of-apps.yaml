@@ -1,26 +1,27 @@
-
-{{ if .Values.argocd.giropopsSenhas.enabled }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: giropops-senhas
+  name: app-of-apps
   namespace: argocd
 spec:
   destination:
-    namespace: giropops-senhas
+    namespace: argocd
     server: https://kubernetes.default.svc
   project: default
   source:
+    path: app-of-apps
     helm:
       parameters:
-      - name: "giropopsSenhas.replicas"
-        value: "{{ .Values.argocd.giropopsSenhas.replicas }}"
-    path: giropops-senhas/helm
+      - name: "argocd.giropopsSenhas.enabled"
+        value: "true"
+      - name: "argocd.randomLogger.enabled"
+        value: "true"
     repoURL: https://github.com/vinycloud/descomplicando-gitops-argocd.git
     targetRevision: feat/argocd
   syncPolicy:
     automated:
       selfHeal: true
+      prune: true
     syncOptions:
-    - CreateNamespace=true
-{{ end }}
+    - CreateNamespace=true 
+    - PruneLast=true
