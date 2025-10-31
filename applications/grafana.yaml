@@ -14,7 +14,12 @@ spec:
     targetRevision: 7.0.19
     helm:
       valueFiles:
-      - $values/grafana-values.yaml
+      - $values/grafana/values.yaml
   - repoURL: 'https://github.com/vinycloud/descomplicando-gitops-argocd.git'
     targetRevision: feat/argocd
     ref: values
+  syncPolicy:
+    automated: 
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
