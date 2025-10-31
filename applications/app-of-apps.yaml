@@ -15,7 +15,7 @@ spec:
       - name: "argocd.giropopsSenhas.enabled"
         value: "true"
       - name: "argocd.randomLogger.enabled"
-        value: "false"
+        value: "true"
     repoURL: https://github.com/vinycloud/descomplicando-gitops-argocd.git
     targetRevision: feat/argocd
   syncPolicy:
